@@ -1,24 +1,17 @@
-# weather
+# 使用規格
 
-## Project setup
-```
-npm install
-```
+Vue CLI3  
+Vue Router  
+Vuex  
+SCSS  
+ESLint(airbnb)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# 使用套件
 
-### Compiles and minifies for production
-```
-npm run build
-```
+FontAwesome -> For Icon  
+Axios -> For AJAX
 
-### Lints and fixes files
-```
-npm run lint
-```
+# 使用 API
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+中央氣象局開方資料平台  
+https://opendata.cwb.gov.tw/dist/opendata-swagger.html

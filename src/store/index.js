@@ -13,7 +13,8 @@ export default new Vuex.Store({
     time: 0,
     sort: "",
     location: "",
-    selected: "----- 請選擇縣市 -----"
+    selected: "----- 請選擇縣市 -----",
+    city: ""
   },
   mutations: {
     WEATHERS(state, payload) {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     },
     SELECTED(state, payload) {
       state.selected = payload;
+    },
+    CITY(state, payload) {
+      state.city = payload;
     }
   },
   actions: {

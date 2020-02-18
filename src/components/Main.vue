@@ -27,124 +27,171 @@
       >{{ sort.north[0].weatherElement[0].time[time].startTime | time}} ~ {{ sort.north[0].weatherElement[0].time[time].endTime | time}}</div>
     </div>
     <div class="section">
-      <div class="block">
-        <h2>北部</h2>
-        <div class="item" v-for="item in sort.north" :key="item.locationName">
-          <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
-            <span class="location">{{ item.locationName }}</span>
-            <span class="degree">
-              {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
-              {{
-              item.weatherElement[4].time[time].parameter.parameterName | degreec
-              }}
-            </span>
-            <span class="rain">
-              {{
-              item.weatherElement[1].time[time].parameter.parameterName
-              }}%
-            </span>
-            <span class="description">
-              {{
-              item.weatherElement[3].time[time].parameter.parameterName
-              }}
-            </span>
-          </a>
+      <!-- 左區塊 -->
+      <div class="sectionLeft">
+        <!-- 北部 -->
+        <div class="block">
+          <h2>北部</h2>
+          <div
+            class="item"
+            v-for="item in sort.north"
+            :key="item.locationName"
+            :class="{'active':$store.state.city===item.locationName}"
+            @mouseover="active(item.locationName)"
+            @mouseout="active('')"
+          >
+            <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
+              <span class="location">{{ item.locationName }}</span>
+              <span class="degree">
+                {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
+                {{
+                item.weatherElement[4].time[time].parameter.parameterName | degreec
+                }}
+              </span>
+              <span class="rain">
+                {{
+                item.weatherElement[1].time[time].parameter.parameterName
+                }}%
+              </span>
+              <span class="description">
+                {{
+                item.weatherElement[3].time[time].parameter.parameterName
+                }}
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- 中部 -->
+        <div class="block">
+          <h2>中部</h2>
+          <div
+            class="item"
+            v-for="item in sort.central"
+            :key="item.locationName"
+            :class="{'active':$store.state.city===item.locationName}"
+            @mouseover="active(item.locationName)"
+            @mouseout="active('')"
+          >
+            <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
+              <span class="location">{{ item.locationName }}</span>
+              <span class="degree">
+                {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
+                {{
+                item.weatherElement[4].time[time].parameter.parameterName | degreec
+                }}
+              </span>
+              <span class="rain">
+                {{
+                item.weatherElement[1].time[time].parameter.parameterName
+                }}%
+              </span>
+              <span class="description">
+                {{
+                item.weatherElement[3].time[time].parameter.parameterName
+                }}
+              </span>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="block">
-        <h2>中部</h2>
-        <div class="item" v-for="item in sort.central" :key="item.locationName">
-          <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
-            <span class="location">{{ item.locationName }}</span>
-            <span class="degree">
-              {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
-              {{
-              item.weatherElement[4].time[time].parameter.parameterName | degreec
-              }}
-            </span>
-            <span class="rain">
-              {{
-              item.weatherElement[1].time[time].parameter.parameterName
-              }}%
-            </span>
-            <span class="description">
-              {{
-              item.weatherElement[3].time[time].parameter.parameterName
-              }}
-            </span>
-          </a>
+      <Taiwan class="taiwan" />
+      <!-- 右區塊 -->
+      <div class="sectionRight">
+        <!-- 東部 -->
+        <div class="block">
+          <h2>東部</h2>
+          <div
+            class="item"
+            v-for="item in sort.east"
+            :key="item.locationName"
+            :class="{'active':$store.state.city===item.locationName}"
+            @mouseover="active(item.locationName)"
+            @mouseout="active('')"
+          >
+            <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
+              <span class="location">{{ item.locationName }}</span>
+              <span class="degree">
+                {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
+                {{
+                item.weatherElement[4].time[time].parameter.parameterName | degreec
+                }}
+              </span>
+              <span class="rain">
+                {{
+                item.weatherElement[1].time[time].parameter.parameterName
+                }}%
+              </span>
+              <span class="description">
+                {{
+                item.weatherElement[3].time[time].parameter.parameterName
+                }}
+              </span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="block">
-        <h2>東部</h2>
-        <div class="item" v-for="item in sort.east" :key="item.locationName">
-          <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
-            <span class="location">{{ item.locationName }}</span>
-            <span class="degree">
-              {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
-              {{
-              item.weatherElement[4].time[time].parameter.parameterName | degreec
-              }}
-            </span>
-            <span class="rain">
-              {{
-              item.weatherElement[1].time[time].parameter.parameterName
-              }}%
-            </span>
-            <span class="description">
-              {{
-              item.weatherElement[3].time[time].parameter.parameterName
-              }}
-            </span>
-          </a>
+        <!-- 南部 -->
+        <div class="block">
+          <h2>南部</h2>
+          <div
+            class="item"
+            v-for="item in sort.south"
+            :key="item.locationName"
+            :class="{'active':$store.state.city===item.locationName}"
+            @mouseover="active(item.locationName)"
+            @mouseout="active('')"
+          >
+            <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
+              <span class="location">{{ item.locationName }}</span>
+              <span class="degree">
+                {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
+                {{
+                item.weatherElement[4].time[time].parameter.parameterName | degreec
+                }}
+              </span>
+              <span class="rain">
+                {{
+                item.weatherElement[1].time[time].parameter.parameterName
+                }}%
+              </span>
+              <span class="description">
+                {{
+                item.weatherElement[3].time[time].parameter.parameterName
+                }}
+              </span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="block">
-        <h2>南部</h2>
-        <div class="item" v-for="item in sort.south" :key="item.locationName">
-          <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
-            <span class="location">{{ item.locationName }}</span>
-            <span class="degree">
-              {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
-              {{
-              item.weatherElement[4].time[time].parameter.parameterName | degreec
-              }}
-            </span>
-            <span class="rain">
-              {{
-              item.weatherElement[1].time[time].parameter.parameterName
-              }}%
-            </span>
-            <span class="description">
-              {{
-              item.weatherElement[3].time[time].parameter.parameterName
-              }}
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="block">
-        <h2>外島</h2>
-        <div class="item" v-for="item in sort.offshore" :key="item.locationName">
-          <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
-            <span class="location">{{ item.locationName }}</span>
-            <span class="degree">
-              {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
-              {{
-              item.weatherElement[4].time[time].parameter.parameterName | degreec
-              }}
-            </span>
-            <span class="rain">
-              {{
-              item.weatherElement[1].time[time].parameter.parameterName
-              }}%
-            </span>
-            <span class="description">
-              {{
-              item.weatherElement[3].time[time].parameter.parameterName
-              }}
-            </span>
-          </a>
+        <!-- 外島 -->
+        <div class="block">
+          <h2>外島</h2>
+          <div
+            class="item"
+            v-for="item in sort.offshore"
+            :key="item.locationName"
+            :class="{'active':$store.state.city===item.locationName}"
+            @mouseover="active(item.locationName)"
+            @mouseout="active('')"
+          >
+            <a href="#" @click.prevent="changeSort(item.locationName)" class="content">
+              <span class="location">{{ item.locationName }}</span>
+              <span class="degree">
+                {{ item.weatherElement[2].time[time].parameter.parameterName }} ~
+                {{
+                item.weatherElement[4].time[time].parameter.parameterName | degreec
+                }}
+              </span>
+              <span class="rain">
+                {{
+                item.weatherElement[1].time[time].parameter.parameterName
+                }}%
+              </span>
+              <span class="description">
+                {{
+                item.weatherElement[3].time[time].parameter.parameterName
+                }}
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -152,9 +199,11 @@
 </template>
 
 <script>
+import Taiwan from "./Taiwan.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "Main",
+  components: { Taiwan },
   data() {
     return {};
   },
@@ -171,9 +220,12 @@ export default {
     changeSort(location) {
       this.$store.dispatch("changeSort", location);
     },
-    mounted() {
-      scroll(0, 0);
+    active(city) {
+      this.$store.commit("CITY", city);
     }
+  },
+  mounted() {
+    scroll(0, 0);
   }
 };
 </script>
@@ -183,6 +235,7 @@ export default {
   max-width: 1200px;
   width: 95%;
   margin: 0 auto;
+
   > .time {
     > .choose {
       display: flex;
@@ -217,42 +270,52 @@ export default {
   > .section {
     display: flex;
     flex-wrap: wrap;
-    > .block {
-      margin: 0 auto 16px;
-      > h2 {
-        line-height: 27px;
-        text-align: center;
-        background-color: #f7ead3;
-      }
-      > .item {
-        display: flex;
-        font-size: 15px;
-        line-height: 36px;
-        text-align: center;
-        border-bottom: 1px solid #ccc;
-        > .content {
+    justify-content: space-around;
+    > .taiwan {
+      display: none;
+    }
+    > .sectionLeft,
+    > .sectionRight {
+      > .block {
+        margin: 0 auto 16px;
+        > h2 {
+          line-height: 27px;
+          text-align: center;
+          background-color: #f7ead3;
+        }
+        > .item {
           display: flex;
-          align-items: center;
-          position: relative;
-          > span {
-            display: inline-block;
-          }
-          > .location {
-            width: 56px;
-          }
-          > .degree {
-            width: 80px;
-          }
-          > .rain {
-            width: 48px;
-          }
-          > .description {
-            width: 126px;
+          font-size: 14px;
+          line-height: 36px;
+          text-align: center;
+          border-bottom: 1px solid #ccc;
+          > .content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            > span {
+              display: inline-block;
+            }
+            > .location {
+              width: 56px;
+            }
+            > .degree {
+              width: 80px;
+            }
+            > .rain {
+              width: 48px;
+            }
+            > .description {
+              width: 126px;
+            }
           }
         }
-      }
-      > .item:hover {
-        background-color: #eee;
+        > .item:hover {
+          background-color: #eee;
+        }
+        > .item.active {
+          background-color: #eee;
+        }
       }
     }
   }
@@ -260,30 +323,42 @@ export default {
 @media screen and (min-width: 660px) {
   .main {
     > .section {
-      > .block {
-        > .item {
-          > .content:after {
-            content: "點擊查看";
-            position: absolute;
-            bottom: -24px;
-            z-index: 100;
-            visibility: hidden;
-            opacity: 0;
-            right: -32px;
-            width: 56px;
-            font-size: 12px;
-            line-height: 12px;
-            padding: 6px 2px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 4px;
-            transition: opacity 0.6s 0.3s;
-          }
-          > .content:hover:after {
-            visibility: visible;
-            opacity: 1;
+      > .sectionLeft,
+      .sectionRight {
+        > .block {
+          > .item {
+            > .content:after {
+              content: "點擊查看";
+              position: absolute;
+              bottom: -24px;
+              z-index: 100;
+              visibility: hidden;
+              opacity: 0;
+              right: -32px;
+              width: 56px;
+              font-size: 12px;
+              line-height: 12px;
+              padding: 6px 2px;
+              color: white;
+              background-color: rgba(0, 0, 0, 0.8);
+              border-radius: 4px;
+              transition: opacity 0.6s 0.3s;
+            }
+            > .content:hover:after {
+              visibility: visible;
+              opacity: 1;
+            }
           }
         }
+      }
+    }
+  }
+}
+@media screen and (min-width: 960px) {
+  .main {
+    > .section {
+      > .taiwan {
+        display: block;
       }
     }
   }
