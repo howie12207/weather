@@ -1,132 +1,356 @@
 <template>
-  <div class="location" :key="this.$router.history.current.name">
+  <div class="location" :key="this.$router.history.current.name" v-loading="loading">
     <div class="container" v-if="week">
-      <h2>{{ week.locationName }}</h2>
+      <h2>
+        <i class="el-icon-location"></i>
+        {{ week.locationName }}
+      </h2>
+
       <h3>{{ week.weatherElement[10].time[0].elementValue[0].value }}</h3>
+      <!-- 今明預報 -->
       <div class="section">
         <table class="block" v-if="sort">
           <caption>今明預報</caption>
           <thead>
             <tr>
-              <th class="time">時間</th>
+              <th class="time">
+                <i class="el-icon-time"></i> 時間
+              </th>
               <th class="degree">溫度 (&deg;C)</th>
               <th class="description">天氣概況</th>
-              <th class="description">舒適度</th>
-              <th class="rain">降雨機率</th>
+              <th class="feel">舒適度</th>
+              <th class="rain">
+                <i class="el-icon-light-rain"></i> 降雨機率
+              </th>
             </tr>
           </thead>
           <tbody>
+            <!-- 第一時間 -->
             <tr>
               <td class="time">
-                <span class="txt">{{ sort.weatherElement[0].time[0].startTime | time2 }}</span>
-                {{ sort.weatherElement[0].time[0].startTime | time }} ~ {{ sort.weatherElement[0].time[0].endTime | time}}
+                <span class="txt">
+                  {{
+                  sort.weatherElement[0].time[0].startTime | time2
+                  }}
+                </span>
+                {{ sort.weatherElement[0].time[0].startTime | time }} ~
+                {{ sort.weatherElement[0].time[0].endTime | time }}
               </td>
               <td class="degree">
                 {{ sort.weatherElement[2].time[0].parameter.parameterName }} ~
                 {{ sort.weatherElement[4].time[0].parameter.parameterName }}
               </td>
-              <td class="description">{{ sort.weatherElement[0].time[0].parameter.parameterName }}</td>
-              <td>{{ sort.weatherElement[3].time[0].parameter.parameterName }}</td>
+              <td class="description">
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  :content="
+                    sort.weatherElement[0].time[0].parameter.parameterName
+                  "
+                  placement="bottom"
+                >
+                  <i
+                    :class="{
+                      'el-icon-cloudy':
+                        sort.weatherElement[0].time[0].parameter.parameterName.indexOf(
+                          '雲'
+                        ) !== -1 ||
+                        sort.weatherElement[0].time[0].parameter.parameterName.indexOf(
+                          '陰'
+                        ) !== -1,
+                      'el-icon-sunny':
+                        sort.weatherElement[0].time[0].parameter.parameterName.indexOf(
+                          '晴'
+                        ) !== -1,
+                      'el-icon-heavy-rain':
+                        sort.weatherElement[0].time[0].parameter.parameterName.indexOf(
+                          '雨'
+                        ) !== -1
+                    }"
+                  ></i>
+                </el-tooltip>
+              </td>
+              <td class="feel">{{ sort.weatherElement[3].time[0].parameter.parameterName }}</td>
               <td class="rain">{{ sort.weatherElement[1].time[0].parameter.parameterName }} %</td>
             </tr>
+            <!-- 第二時間 -->
             <tr>
               <td class="time">
-                <span class="txt">{{ sort.weatherElement[0].time[1].startTime | time3 }}</span>
-                {{ sort.weatherElement[0].time[1].startTime | time }} ~ {{ sort.weatherElement[0].time[1].endTime | time}}
+                <span class="txt">
+                  {{
+                  sort.weatherElement[0].time[1].startTime | time3
+                  }}
+                </span>
+                {{ sort.weatherElement[0].time[1].startTime | time }} ~
+                {{ sort.weatherElement[0].time[1].endTime | time }}
               </td>
               <td class="degree">
                 {{ sort.weatherElement[2].time[1].parameter.parameterName }} ~
                 {{ sort.weatherElement[4].time[1].parameter.parameterName }}
               </td>
-              <td class="description">{{ sort.weatherElement[0].time[1].parameter.parameterName }}</td>
-              <td>{{ sort.weatherElement[3].time[1].parameter.parameterName }}</td>
+              <td class="description">
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  :content="
+                    sort.weatherElement[0].time[1].parameter.parameterName
+                  "
+                  placement="bottom"
+                >
+                  <i
+                    :class="{
+                      'el-icon-cloudy':
+                        sort.weatherElement[0].time[1].parameter.parameterName.indexOf(
+                          '雲'
+                        ) !== -1 ||
+                        sort.weatherElement[0].time[1].parameter.parameterName.indexOf(
+                          '陰'
+                        ) !== -1,
+                      'el-icon-sunny':
+                        sort.weatherElement[0].time[1].parameter.parameterName.indexOf(
+                          '晴'
+                        ) !== -1,
+                      'el-icon-heavy-rain':
+                        sort.weatherElement[0].time[1].parameter.parameterName.indexOf(
+                          '雨'
+                        ) !== -1
+                    }"
+                  ></i>
+                </el-tooltip>
+              </td>
+              <td class="feel">{{ sort.weatherElement[3].time[1].parameter.parameterName }}</td>
               <td class="rain">{{ sort.weatherElement[1].time[1].parameter.parameterName }} %</td>
             </tr>
+            <!-- 第三時間 -->
             <tr>
               <td class="time">
-                <span class="txt">{{ sort.weatherElement[0].time[2].startTime | time4 }}</span>
-                {{ sort.weatherElement[0].time[2].startTime | time }} ~ {{ sort.weatherElement[0].time[2].endTime | time}}
+                <span class="txt">
+                  {{
+                  sort.weatherElement[0].time[2].startTime | time4
+                  }}
+                </span>
+                {{ sort.weatherElement[0].time[2].startTime | time }} ~
+                {{ sort.weatherElement[0].time[2].endTime | time }}
               </td>
               <td class="degree">
                 {{ sort.weatherElement[2].time[2].parameter.parameterName }} ~
                 {{ sort.weatherElement[4].time[2].parameter.parameterName }}
               </td>
-              <td class="description">{{ sort.weatherElement[0].time[2].parameter.parameterName }}</td>
-              <td>{{ sort.weatherElement[3].time[2].parameter.parameterName }}</td>
+              <td class="description">
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  :content="
+                    sort.weatherElement[0].time[2].parameter.parameterName
+                  "
+                  placement="bottom"
+                >
+                  <i
+                    :class="{
+                      'el-icon-cloudy':
+                        sort.weatherElement[0].time[2].parameter.parameterName.indexOf(
+                          '雲'
+                        ) !== -1 ||
+                        sort.weatherElement[0].time[2].parameter.parameterName.indexOf(
+                          '陰'
+                        ) !== -1,
+                      'el-icon-sunny':
+                        sort.weatherElement[0].time[2].parameter.parameterName.indexOf(
+                          '晴'
+                        ) !== -1,
+                      'el-icon-heavy-rain':
+                        sort.weatherElement[0].time[2].parameter.parameterName.indexOf(
+                          '雨'
+                        ) !== -1
+                    }"
+                  ></i>
+                </el-tooltip>
+              </td>
+              <td class="feel">{{ sort.weatherElement[3].time[2].parameter.parameterName }}</td>
               <td class="rain">{{ sort.weatherElement[1].time[2].parameter.parameterName }} %</td>
             </tr>
           </tbody>
         </table>
         <div class="item"></div>
       </div>
+      <!-- 一週預報 -->
       <div class="section">
         <table class="block week">
           <caption>一週預報</caption>
           <thead>
             <tr>
               <th></th>
-              <th v-for="i in 7" :key="i">{{ week.weatherElement[11].time[i*2-1].startTime | date}}</th>
+              <th
+                v-for="i in 7"
+                :key="i"
+              >{{ week.weatherElement[11].time[i * 2 - 1].startTime | date }}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th rowspan="2">白天</th>
-              <td
-                v-for="i in 7"
-                :key="i"
-              >{{ week.weatherElement[6].time[i*2-2].elementValue[0].value }}</td>
+              <th rowspan="2">
+                <el-tooltip class="item" effect="dark" content="06:00 ~ 18:00" placement="bottom">
+                  <i class="el-icon-sunrise"></i>
+                </el-tooltip>
+              </th>
+              <td v-for="i in 7" :key="i">
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  :content="
+                    week.weatherElement[6].time[i * 2 - 2].elementValue[0].value
+                  "
+                  placement="bottom"
+                >
+                  <i
+                    :class="{
+                      'el-icon-cloudy':
+                        week.weatherElement[6].time[
+                          i * 2 - 2
+                        ].elementValue[0].value.indexOf('雲') !== -1 ||
+                        week.weatherElement[6].time[
+                          i * 2 - 2
+                        ].elementValue[0].value.indexOf('陰') !== -1,
+                      'el-icon-sunny':
+                        week.weatherElement[6].time[
+                          i * 2 - 2
+                        ].elementValue[0].value.indexOf('晴') !== -1,
+                      'el-icon-heavy-rain':
+                        week.weatherElement[6].time[
+                          i * 2 - 2
+                        ].elementValue[0].value.indexOf('雨') !== -1
+                    }"
+                  ></i>
+                </el-tooltip>
+              </td>
             </tr>
             <tr>
-              <td
-                v-for="i in 7"
-                :key="i"
-              >{{ week.weatherElement[8].time[i*2-2].elementValue[0].value | degreec }} ~ {{ week.weatherElement[12].time[i*2-2].elementValue[0].value | degreec}}</td>
+              <td v-for="i in 7" :key="i">
+                {{
+                week.weatherElement[8].time[i * 2 - 2].elementValue[0].value
+                | degreec
+                }}
+                ~
+                {{
+                week.weatherElement[12].time[i * 2 - 2].elementValue[0].value
+                | degreec
+                }}
+              </td>
             </tr>
             <tr>
-              <th rowspan="2" class="night">晚上</th>
-              <td
-                v-for="i in 7"
-                :key="i"
-              >{{ week.weatherElement[6].time[i*2-1].elementValue[0].value }}</td>
+              <th rowspan="2" class="night">
+                <el-tooltip class="item" effect="dark" content="18:00 ~ 06:00" placement="bottom">
+                  <i class="el-icon-moon"></i>
+                </el-tooltip>
+              </th>
+              <td v-for="i in 7" :key="i">
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  :content="
+                    week.weatherElement[6].time[i * 2 - 1].elementValue[0].value
+                  "
+                  placement="bottom"
+                >
+                  <i
+                    :class="{
+                      'el-icon-cloudy':
+                        week.weatherElement[6].time[
+                          i * 2 - 1
+                        ].elementValue[0].value.indexOf('雲') !== -1 ||
+                        week.weatherElement[6].time[
+                          i * 2 - 1
+                        ].elementValue[0].value.indexOf('陰') !== -1,
+                      'el-icon-sunny':
+                        week.weatherElement[6].time[
+                          i * 2 - 1
+                        ].elementValue[0].value.indexOf('晴') !== -1,
+                      'el-icon-heavy-rain':
+                        week.weatherElement[6].time[
+                          i * 2 - 1
+                        ].elementValue[0].value.indexOf('雨') !== -1
+                    }"
+                  ></i>
+                </el-tooltip>
+              </td>
             </tr>
             <tr>
-              <td
-                v-for="i in 7"
-                :key="i"
-              >{{ week.weatherElement[8].time[i*2-1].elementValue[0].value | degreec }} ~ {{ week.weatherElement[12].time[i*2-1].elementValue[0].value | degreec}}</td>
+              <td v-for="i in 7" :key="i">
+                {{
+                week.weatherElement[8].time[i * 2 - 1].elementValue[0].value
+                | degreec
+                }}
+                ~
+                {{
+                week.weatherElement[12].time[i * 2 - 1].elementValue[0].value
+                | degreec
+                }}
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <!-- 體感溫度和紫外線 -->
       <div class="section">
         <table class="block">
           <caption>體感溫度和紫外線</caption>
           <thead>
             <tr>
               <th></th>
-              <th v-for="i in 7" :key="i">{{ week.weatherElement[11].time[i*2-1].startTime | date}}</th>
+              <th
+                v-for="i in 7"
+                :key="i"
+              >{{ week.weatherElement[11].time[i * 2 - 1].startTime | date }}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>體感溫度</th>
-              <td
-                v-for="i in 7"
-                :key="i"
-              >{{ week.weatherElement[11].time[i*2-1].elementValue[0].value | degreec}} ~ {{ week.weatherElement[5].time[i*2-1].elementValue[0].value | degreec}}</td>
+              <td v-for="i in 7" :key="i">
+                {{
+                week.weatherElement[11].time[i * 2 - 1].elementValue[0].value
+                | degreec
+                }}
+                ~
+                {{
+                week.weatherElement[5].time[i * 2 - 1].elementValue[0].value
+                | degreec
+                }}
+              </td>
             </tr>
             <tr>
               <th>紫外線指數</th>
               <td v-for="i in 7" :key="i">
                 <span
                   class="uv"
-                  :class="{'uv0':week.weatherElement[9].time[i-1].elementValue[0].value<=2,
-                  'uv3':week.weatherElement[9].time[i-1].elementValue[0].value>2 && week.weatherElement[9].time[i-1].elementValue[0].value<=5,
-                  'uv6':week.weatherElement[9].time[i-1].elementValue[0].value>5 && week.weatherElement[9].time[i-1].elementValue[0].value<=7,
-                  'uv8':week.weatherElement[9].time[i-1].elementValue[0].value>7 && week.weatherElement[9].time[i-1].elementValue[0].value<=10,
-                  'uv11':week.weatherElement[9].time[i-1].elementValue[0].value>10}
-                  "
-                >{{ week.weatherElement[9].time[i-1].elementValue[0].value }}</span>
+                  :class="{
+                    uv0:
+                      week.weatherElement[9].time[i - 1].elementValue[0]
+                        .value <= 2,
+                    uv3:
+                      week.weatherElement[9].time[i - 1].elementValue[0].value >
+                        2 &&
+                      week.weatherElement[9].time[i - 1].elementValue[0]
+                        .value <= 5,
+                    uv6:
+                      week.weatherElement[9].time[i - 1].elementValue[0].value >
+                        5 &&
+                      week.weatherElement[9].time[i - 1].elementValue[0]
+                        .value <= 7,
+                    uv8:
+                      week.weatherElement[9].time[i - 1].elementValue[0].value >
+                        7 &&
+                      week.weatherElement[9].time[i - 1].elementValue[0]
+                        .value <= 10,
+                    uv11:
+                      week.weatherElement[9].time[i - 1].elementValue[0].value >
+                      10
+                  }"
+                >
+                  {{
+                  week.weatherElement[9].time[i - 1].elementValue[0].value
+                  }}
+                </span>
               </td>
             </tr>
           </tbody>
@@ -137,9 +361,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Location",
   computed: {
+    ...mapGetters(["loading"]),
     sort() {
       let tmp = this.$store.state.weathers.filter(item => {
         if (item.locationName === this.$store.state.location) return item;
@@ -161,6 +387,8 @@ export default {
 .location {
   max-width: 1200px;
   margin: 0 auto;
+  color: #606266;
+  font-size: 14px;
   > .container {
     min-width: 320px;
     overflow: auto;
@@ -169,31 +397,31 @@ export default {
     > h2 {
       width: 90%;
       margin: 0 auto 16px;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 30px;
       font-weight: 800;
       position: relative;
-      color: green;
+      color: #303133;
     }
-    > h2:before {
-      content: "";
-      position: relative;
-      display: inline-block;
-      margin: 0 8px 0 0;
-      left: 0;
-      top: 5px;
-      height: 22px;
-      width: 4px;
-      background-color: brown;
-    }
+    // > h2:before {
+    //   content: "";
+    //   position: relative;
+    //   display: inline-block;
+    //   margin: 0 8px 0 0;
+    //   left: 0;
+    //   top: 5px;
+    //   height: 22px;
+    //   width: 4px;
+    //   background-color: #dcdfe6;
+    // }
     > h3 {
       width: 80%;
       margin: 0 auto 16px;
-      font-size: 14px;
       line-height: 20px;
       padding: 8px;
-      border: 1px solid chocolate;
+      border: 1px solid #fde2e2;
       align-self: center;
+      border-radius: 3px;
     }
     > .section {
       margin: 0 0 40px;
@@ -205,19 +433,26 @@ export default {
         caption {
           font-size: 16px;
           line-height: 32px;
-          background-color: #f7ead3;
-          font-weight: 600;
-          color: #0054ba;
+          background-color: #d9ecff;
+          border-radius: 3px;
+          // font-weight: 600;
+          color: #303133;
         }
+
         thead {
           > tr {
-            border-bottom: 1px solid #8297d6;
-            border-top: 1px solid #8297d6;
+            border-bottom: 1px solid #dcdfe6;
           }
         }
+        td i {
+          font-size: 20px;
+        }
         th {
-          color: brown;
+          color: #909399;
           font-size: 14px;
+        }
+        tbody th i {
+          font-size: 24px;
         }
         td,
         th {
@@ -226,37 +461,37 @@ export default {
         }
         tbody {
           > tr {
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #ebeef5;
             > th {
               position: relative;
             }
-            > th:after {
-              content: "06:00 ~ 18:00";
-              position: absolute;
-              bottom: -16px;
-              z-index: 100;
-              visibility: hidden;
-              opacity: 0;
-              right: -48px;
-              width: 80px;
-              font-size: 12px;
-              line-height: 18px;
-              padding: 6px 2px;
-              color: white;
-              background-color: rgba(0, 0, 0, 0.8);
-              border-radius: 4px;
-              transition: opacity 1s 0.3s;
-            }
-            > .night:first-child:after {
-              content: "18:00 ~ 06:00";
-            }
-            > th:hover:after {
-              visibility: visible;
-              opacity: 1;
-            }
+            // > th:after {
+            //   content: "06:00 ~ 18:00";
+            //   position: absolute;
+            //   bottom: -16px;
+            //   z-index: 100;
+            //   visibility: hidden;
+            //   opacity: 0;
+            //   right: -48px;
+            //   width: 80px;
+            //   font-size: 12px;
+            //   line-height: 18px;
+            //   padding: 6px 2px;
+            //   color: white;
+            //   background-color: rgba(0, 0, 0, 0.8);
+            //   border-radius: 4px;
+            //   transition: opacity 1s 0.3s;
+            // }
+            // > .night:first-child:after {
+            //   content: "18:00 ~ 06:00";
+            // }
+            // > th:hover:after {
+            //   visibility: visible;
+            //   opacity: 1;
+            // }
             > td.time {
               > .txt {
-                color: darkcyan;
+                color: #79bbff;
                 font-weight: 600;
               }
             }
@@ -269,19 +504,19 @@ export default {
             border-bottom: none;
           }
           > tr:nth-child(even) {
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #ebeef5;
           }
           th {
-            border-bottom: 1px solid #ccc !important;
+            border-bottom: 1px solid #ebeef5 !important;
           }
           tr:nth-child(odd) {
             td {
-              padding: 16px 4px 0 !important;
+              padding: 16px 4px 8px !important;
             }
           }
           tr:nth-child(even) {
             td {
-              padding: 0 4px 16px !important;
+              padding: 0px 4px 16px !important;
             }
           }
         }

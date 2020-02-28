@@ -1,21 +1,51 @@
 <template>
   <div class="header">
     <div class="container">
-      <h1>天氣預報</h1>
-      <select @change="changeSort()" v-model="selected">
-        <option disabled>----- 請選擇縣市 -----</option>
-        <option>全部</option>
-        <option disabled>----- 北部 -----</option>
-        <option v-for="item in sort.north" :key="item.locationName">{{ item.locationName }}</option>
-        <option disabled>----- 中部 -----</option>
-        <option v-for="item in sort.central" :key="item.locationName">{{ item.locationName }}</option>
-        <option disabled>----- 東部 -----</option>
-        <option v-for="item in sort.east" :key="item.locationName">{{ item.locationName }}</option>
-        <option disabled>----- 南部 -----</option>
-        <option v-for="item in sort.south" :key="item.locationName">{{ item.locationName }}</option>
-        <option disabled>----- 外島 -----</option>
-        <option v-for="item in sort.offshore" :key="item.locationName">{{ item.locationName }}</option>
-      </select>
+      <h1>
+        <i class="el-icon-cloudy"></i> 天氣預報
+      </h1>
+      <el-select filterable @change="changeSort()" v-model="selected" placeholder="請選擇或輸入縣市">
+        <el-option-group label="北部">
+          <el-option
+            v-for="item in sort.north"
+            :key="item.locationName"
+            :label="item.locationName"
+            :value="item.locationName"
+          ></el-option>
+        </el-option-group>
+        <el-option-group label="中部">
+          <el-option
+            v-for="item in sort.central"
+            :key="item.locationName"
+            :label="item.locationName"
+            :value="item.locationName"
+          ></el-option>
+        </el-option-group>
+        <el-option-group label="東部">
+          <el-option
+            v-for="item in sort.east"
+            :key="item.locationName"
+            :label="item.locationName"
+            :value="item.locationName"
+          ></el-option>
+        </el-option-group>
+        <el-option-group label="南部">
+          <el-option
+            v-for="item in sort.south"
+            :key="item.locationName"
+            :label="item.locationName"
+            :value="item.locationName"
+          ></el-option>
+        </el-option-group>
+        <el-option-group label="外島">
+          <el-option
+            v-for="item in sort.offshore"
+            :key="item.locationName"
+            :label="item.locationName"
+            :value="item.locationName"
+          ></el-option>
+        </el-option-group>
+      </el-select>
     </div>
   </div>
 </template>
@@ -48,6 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  color: #606266;
   > .container {
     font-family: Microsoft JhengHei;
     background: center/cover no-repeat url("../assets/header.jpg");
@@ -57,19 +88,10 @@ export default {
     justify-content: center;
     align-items: center;
     > h1 {
-      font-size: 40px;
-      line-height: 72px;
+      font-size: 30px;
+      line-height: 50px;
       font-weight: 700;
-    }
-    > select {
-      width: auto;
-      text-align: center;
-      text-align-last: center;
-      padding: 0 2%;
-      font-size: 16px;
-      line-height: 32px;
-      height: 32px;
-      border: 1px solid brown;
+      color: #303133;
     }
   }
 }

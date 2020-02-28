@@ -13,10 +13,14 @@ export default new Vuex.Store({
     time: 0,
     sort: "",
     location: "",
-    selected: "----- 請選擇縣市 -----",
-    city: ""
+    selected: "",
+    city: "",
+    loading: false
   },
   mutations: {
+    LOADING(state, status) {
+      state.loading = status;
+    },
     WEATHERS(state, payload) {
       state.weathers = payload;
     },
@@ -42,13 +46,18 @@ export default new Vuex.Store({
   actions: {
     // 取得兩天天氣資料
     getWeathers(context) {
+      context.commit("LOADING", true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_APIDAY}=${process.env.VUE_APP_APICODE}`;
       axios.get(url).then(res => {
         context.commit("WEATHERS", res.data.records.location);
       });
+      setTimeout(() => {
+        context.commit("LOADING", false);
+      }, 500);
     },
     // 取得一周天氣資料
     getWeathersWeek(context, payload) {
+      context.commit("LOADING", true);
       const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_APIWEEK}=${process.env.VUE_APP_APICODE}`;
       let tmp = {};
       context.dispatch("transform", payload);
@@ -59,6 +68,9 @@ export default new Vuex.Store({
           }
         });
         context.commit("WEATHERSWEEK", tmp);
+        setTimeout(() => {
+          context.commit("LOADING", false);
+        }, 500);
       });
     },
     // 更換分類
@@ -119,9 +131,41 @@ export default new Vuex.Store({
       if (payload == "lienchiang") context.commit("LOCATION", "連江縣");
       if (payload == "kinmen") context.commit("LOCATION", "金門縣");
       if (payload == "penghu") context.commit("LOCATION", "澎湖縣");
+    },
+    // 啟用
+    active(context, payload) {
+      context.commit("CITY", payload);
+      let span = document.createElement("span");
+      let node = document.createTextNode(payload);
+      span.appendChild(node);
+      let element = document.querySelector(".taiwan");
+      element.appendChild(span);
+      element.querySelectorAll("span").forEach(item => {
+        item.style.setProperty("position", "absolute");
+        item.style.setProperty("top", `${event.pageY + 20}px`);
+        item.style.setProperty("left", `${event.pageX + 20}px`);
+        item.style.setProperty("background-color", "black");
+        item.style.setProperty("color", "white");
+        item.style.setProperty("padding", "0px 8px");
+        item.style.setProperty("line-height", "30px");
+        item.style.setProperty("font-size", "13px");
+        item.style.setProperty("border-radius", "3px");
+      });
+    },
+    // 關閉啟用
+    inactive(context) {
+      context.commit("CITY", "");
+      let element = document.querySelector(".taiwan");
+      let span = element.querySelectorAll("span");
+      span.forEach(item => {
+        element.removeChild(item);
+      });
     }
   },
   getters: {
+    loading(state) {
+      return state.loading;
+    },
     sort(state) {
       let tmp = {};
       tmp.north = [];

@@ -18,8 +18,9 @@
           <g transform="translate(-222.14286,-499.06639)">
             <path
               @mouseover="active('澎湖縣')"
+              @mouseleave="inactive()"
               @click="changeSort('澎湖縣')"
-              :class="{'active':$store.state.city==='澎湖縣'}"
+              :class="{ active: $store.state.city === '澎湖縣' }"
               id="澎湖縣"
               sodipodi:nodetypes="csssssssssssssssssssssssssssssssssssssssssssssssssssscsssscsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssscsssssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -40,8 +41,9 @@
             <g transform="translate(4.6145365,50.433747)">
               <path
                 @mouseover="active('金門縣')"
+                @mouseleave="inactive()"
                 @click="changeSort('金門縣')"
-                :class="{'active':$store.state.city==='金門縣'}"
+                :class="{ active: $store.state.city === '金門縣' }"
                 id="金門縣"
                 sodipodi:nodetypes="csssssssssssssssssssssssscsssssssssssssssssssscssssssssssscssssssssssssssssssssscssssssssscsssssssssssssssssscsssssscsssssssssscsssssssssssscsssssssssssssscsssssssssssscssssssssssssssc"
                 fill="#EDF7A9"
@@ -77,8 +79,9 @@
             <g id="g4313" transform="translate(13.831957,20.350481)">
               <path
                 @mouseover="active('連江縣')"
+                @mouseleave="inactive()"
                 @click="changeSort('連江縣')"
-                :class="{'active':$store.state.city==='連江縣'}"
+                :class="{ active: $store.state.city === '連江縣' }"
                 id="連江縣"
                 sodipodi:nodetypes="csssssssssssc"
                 fill="#EDF7A9"
@@ -91,8 +94,9 @@
 
             <path
               @mouseover="active('基隆市')"
+              @mouseleave="inactive()"
               @click="changeSort('基隆市')"
-              :class="{'active':$store.state.city==='基隆市'}"
+              :class="{ active: $store.state.city === '基隆市' }"
               id="基隆市"
               sodipodi:nodetypes="ccssssssssscssssssssssssssssssssssssssscssssssssssssssssssssssssssscssssssssssssssssssssssscsss"
               fill="#EDF7A9"
@@ -110,8 +114,9 @@
 
             <path
               @mouseover="active('屏東縣')"
+              @mouseleave="inactive()"
               @click="changeSort('屏東縣')"
-              :class="{'active':$store.state.city==='屏東縣'}"
+              :class="{ active: $store.state.city === '屏東縣' }"
               id="屏東縣"
               sodipodi:nodetypes="csssssssssscssssscssssssssssscssscsssssssscssssssssssssssssscssssscssssssscscsssssssssssssssssssssssccssssssssssssssssssssssscssssssssscssscssssssssscsssssssssssscsssssssssscsssssssssscsssssssssssssssssssssssssssssssscssssssssscsssssssssssssssssscsssssssssssssssssscsssssssssscssssssssssssscssssssssssssssscsssssssssssssssssssssssssssssssssssscsssssssssssssssssssscsssssssssssssssssssssssssssssssssssssscsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssscsssssssc"
               fill="#EDF7A9"
@@ -153,8 +158,9 @@
 
             <path
               @mouseover="active('宜蘭縣')"
+              @mouseleave="inactive()"
               @click="changeSort('宜蘭縣')"
-              :class="{'active':$store.state.city==='宜蘭縣'}"
+              :class="{ active: $store.state.city === '宜蘭縣' }"
               id="宜蘭縣"
               sodipodi:nodetypes="csssssssssssssssssssssssscsssssscsssssssssssssscsssssssssssssssssscsssssssssssssssssssssssssssscsssssssssssssssssssssssssssssssssssssscsssscsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssscsssssssssssscssssssssssssscsssssssssssscssssssssssssssscsssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssscssssssssssssssssssssssssscssssssssssssssscssssssssssssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -192,8 +198,9 @@
 
             <path
               @mouseover="active('桃園市')"
+              @mouseleave="inactive()"
               @click="changeSort('桃園市')"
-              :class="{'active':$store.state.city==='桃園市'}"
+              :class="{ active: $store.state.city === '桃園市' }"
               id="桃園市"
               sodipodi:nodetypes="csssssssssssssssssssssssscssssssssssssssssscssssssssssscssssssssssssssssssssssssssssssssssscssssssssssssssssscssssssssssssssscsssssssssssssssssssssssssssscssscssssssssssssssssssssssssssssssssscssssssssssssssssssssssssssssscsssscssssssssssssssssscssssssssssssssssscsssssssssssssssssscssssssssssssssssssssssscsssssssssssssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -228,8 +235,9 @@
 
             <path
               @mouseover="active('新竹市')"
+              @mouseleave="inactive()"
               @click="changeSort('新竹市')"
-              :class="{'active':$store.state.city==='新竹市'}"
+              :class="{ active: $store.state.city === '新竹市' }"
               id="新竹市"
               sodipodi:nodetypes="csssssssssssscsssssssssssssssscsssssssssssssssssscssssssssssssssssssscssssssscscsssssssssssssssssscc"
               fill="#EDF7A9"
@@ -247,8 +255,9 @@
 
             <path
               @mouseover="active('新竹縣')"
+              @mouseleave="inactive()"
               @click="changeSort('新竹縣')"
-              :class="{'active':$store.state.city==='新竹縣'}"
+              :class="{ active: $store.state.city === '新竹縣' }"
               id="新竹縣"
               sodipodi:nodetypes="cssssssssssscssssssssssssssssssssssssssssssssssssssssssscsssssssssssscsssssssssssssssssssssssssssssssssssssssssssssssssssscsssssssssssssssscsssssssssssssssssscssssssssssssssssssscsssssssscssssssssssscssscsssssssssssssssssssssssssssscssssssssssssssscssssssssssssssssscssssssssssssssssssssssssssssssssssscssssssssssscssssssssssssssssscsssssscsssssssssssssscssssssssssssssssssc"
               fill="#EDF7A9"
@@ -283,8 +292,9 @@
             />
             <path
               @mouseover="active('苗栗縣')"
+              @mouseleave="inactive()"
               @click="changeSort('苗栗縣')"
-              :class="{'active':$store.state.city==='苗栗縣'}"
+              :class="{ active: $store.state.city === '苗栗縣' }"
               id="苗栗縣"
               fill="#EDF7A9"
               stroke="#878787"
@@ -315,8 +325,9 @@
 
             <path
               @mouseover="active('彰化縣')"
+              @mouseleave="inactive()"
               @click="changeSort('彰化縣')"
-              :class="{'active':$store.state.city==='彰化縣'}"
+              :class="{ active: $store.state.city === '彰化縣' }"
               id="彰化縣"
               sodipodi:nodetypes="cssssssssssssssssssssssssssscsssssscssssssssssssssssssssssssssssssssscsssscsscssssssssssssscsssssssssscssssssssssssscsssssssscssssssssssssssssscsssssssssssssscsssssssssssssssscssssssssssssssscssssssssssssscssssssssssssssc"
               fill="#EDF7A9"
@@ -342,8 +353,9 @@
 
             <path
               @mouseover="active('臺中市')"
+              @mouseleave="inactive()"
               @click="changeSort('臺中市')"
-              :class="{'active':$store.state.city==='臺中市'}"
+              :class="{ active: $store.state.city === '臺中市' }"
               id="臺中市"
               sodipodi:nodetypes="cssssssssssssscsssssssssscssssssssssssscssscsssssssssssssssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssscsssssssssssscssssssssssssssssssssssssssscsssssssssssssssssssssssssssscsssssssssscssssssssssssssssssssssssssscssssssssssssssssssssssssssssssscsssssssssssssssssssssssscsssssssssssssssssssscscsssssssssccssssssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -382,8 +394,9 @@
 
             <path
               @mouseover="active('雲林縣')"
+              @mouseleave="inactive()"
               @click="changeSort('雲林縣')"
-              :class="{'active':$store.state.city==='雲林縣'}"
+              :class="{ active: $store.state.city === '雲林縣' }"
               id="雲林縣"
               sodipodi:nodetypes="csssssssssssssssssscssssssssssssssscsssssscssssssssssssssssssssssssssscssssssssssssscsssssssssssssssssssscsssssssssssssssssssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -411,8 +424,9 @@
 
             <path
               @mouseover="active('花蓮縣')"
+              @mouseleave="inactive()"
               @click="changeSort('花蓮縣')"
-              :class="{'active':$store.state.city==='花蓮縣'}"
+              :class="{ active: $store.state.city === '花蓮縣' }"
               id="花蓮縣"
               sodipodi:nodetypes="csssssssssssscsssscssssssscsssssssssssssssssssssssssssssscsssssscssssssscsssssssssscsssssscsscssssssssssssssssscsssssssssssssssscssssssssssssssssssssssssssscssssssssssssssssssssscssssssssssscsssssssssssscssssssscsssssssssssscssssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssssssccsssssssssssssssscsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssscsssssssssssssssssssssssssssssssssssssssssssscssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -456,8 +470,9 @@
 
             <path
               @mouseover="active('南投縣')"
+              @mouseleave="inactive()"
               @click="changeSort('南投縣')"
-              :class="{'active':$store.state.city==='南投縣'}"
+              :class="{ active: $store.state.city === '南投縣' }"
               id="南投縣"
               sodipodi:nodetypes="csssssssssssssscsssssssssssssssssscsssssssssscsssssssssssssssssssssscsscsssscsssssssssssssssscssssssssssssssssssssssssssscssssssssssssssssssssscssssssssssscsssssssssssscssssssscsssssssssssscsssssssssssscssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssssssssssssssssccsssscsssssssssssssssssssssssssssssssssz"
               fill="#EDF7A9"
@@ -493,8 +508,9 @@
 
             <path
               @mouseover="active('臺東縣')"
+              @mouseleave="inactive()"
               @click="changeSort('臺東縣')"
-              :class="{'active':$store.state.city==='臺東縣'}"
+              :class="{ active: $store.state.city === '臺東縣' }"
               id="臺東縣"
               sodipodi:nodetypes="cssscsssssssscsssssssssssssssssssssssssssssssssssssssscssssssssssssssssssssssssssssssssscssscssssssssssssssssssssssssssscsssssssssssssssssssssssssssssssssssssssssssssssscsssssssssssssssssssscssssssssssssssssssssssssssssssscssssssssssssssssssssssssssssssssssssssssssssssssssssssscsssssssssssssssssssssssssccsssssssssscssssscssssssssssscssscsssssssscssssssssssssssssscssssscssssssscscssssssssssssssssssssssscsssssssssssssssssssssscssssssssssscsssssssssssscsssssscsssssssssscssssssscsssssscsssssssssssssssssssssssssssssscssssssscsssscssssssssssssc"
               fill="#EDF7A9"
@@ -538,8 +554,9 @@
             />
             <path
               @mouseover="active('高雄市')"
+              @mouseleave="inactive()"
               @click="changeSort('高雄市')"
-              :class="{'active':$store.state.city==='高雄市'}"
+              :class="{ active: $store.state.city === '高雄市' }"
               id="高雄市"
               fill="#EDF7A9"
               stroke="#878787"
@@ -575,8 +592,9 @@
             />
             <path
               @mouseover="active('臺南市')"
+              @mouseleave="inactive()"
               @click="changeSort('臺南市')"
-              :class="{'active':$store.state.city==='臺南市'}"
+              :class="{ active: $store.state.city === '臺南市' }"
               id="臺南市"
               fill="#EDF7A9"
               stroke="#878787"
@@ -605,8 +623,9 @@
             />
             <path
               @mouseover="active('新北市')"
+              @mouseleave="inactive()"
               @click="changeSort('新北市')"
-              :class="{'active':$store.state.city==='新北市'}"
+              :class="{ active: $store.state.city === '新北市' }"
               id="新北市"
               fill="#EDF7A9"
               stroke="#878787"
@@ -656,8 +675,9 @@
             />
             <path
               @mouseover="active('臺北市')"
+              @mouseleave="inactive()"
               @click="changeSort('臺北市')"
-              :class="{'active':$store.state.city==='臺北市'}"
+              :class="{ active: $store.state.city === '臺北市' }"
               id="臺北市"
               fill="#EDF7A9"
               stroke="#878787"
@@ -673,9 +693,10 @@
 			l-0.893,2.322l-1.607,1.07l-2.5,0.18l-1.965,0.893l-3.035,3.571l-0.893,2.321L837.196,556.809L837.196,556.809z"
             />
             <path
-              @mouseover="active('嘉義縣')"
+              @mouseenter="active('嘉義縣')"
+              @mouseleave="inactive()"
               @click="changeSort('嘉義縣')"
-              :class="{'active':$store.state.city==='嘉義縣'}"
+              :class="{ active: $store.state.city === '嘉義縣' }"
               id="嘉義縣"
               fill="#EDF7A9"
               stroke="#878787"
@@ -709,9 +730,10 @@
             />
 
             <path
-              @mouseover="active('嘉義市')"
+              @mouseenter="active('嘉義市')"
+              @mouseleave="inactive()"
               @click="changeSort('嘉義市')"
-              :class="{'active':$store.state.city==='嘉義市'}"
+              :class="{ active: $store.state.city === '嘉義市' }"
               id="嘉義市"
               sodipodi:nodetypes="cssssssssssssssssssssssssssssssssssc"
               fill="#EDF7A9"
@@ -735,7 +757,10 @@ export default {
   name: "Taiwan",
   methods: {
     active(city) {
-      this.$store.commit("CITY", city);
+      this.$store.dispatch("active", city);
+    },
+    inactive() {
+      this.$store.dispatch("inactive");
     },
     changeSort(city) {
       this.$store.dispatch("changeSort", city);
@@ -755,27 +780,18 @@ export default {
       height: 600px;
       position: relative;
     }
-    svg::after {
-      content: "123132";
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      top: 0;
-      left: 0;
-      background-color: yellow;
-    }
     path {
-      stroke: black;
-      fill: rgba(0, 0, 0, 0.1);
+      stroke: #606266;
+      fill: #d9ecff;
       transition: 0.4s;
     }
     path:hover {
-      fill: green;
+      fill: #ecf5ff;
       cursor: pointer;
       transform: translate(-4px, -4px);
     }
     .active {
-      fill: green;
+      fill: #ecf5ff;
       transform: translate(-4px, -4px);
     }
   }
