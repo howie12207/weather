@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Weather from "../components/Weather.vue";
 import Main from "../components/Main.vue";
 import Location from "../components/Location.vue";
-import Taiwan from "../components/Taiwan.vue";
 
 Vue.use(VueRouter);
 
@@ -197,11 +196,6 @@ const routes = [
         }
       }
     ]
-  },
-  {
-    path: "/taiwan",
-    name: "Taiwan",
-    component: Taiwan
   },
   {
     path: "*",

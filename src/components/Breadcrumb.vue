@@ -19,8 +19,6 @@ export default {
       breadcrumbList: []
     };
   },
-  computed: {},
-  created() {},
   mounted() {
     this.updateList();
   },
@@ -33,7 +31,7 @@ export default {
     routeTo(pRouteTo) {
       if (this.breadcrumbList[pRouteTo].link) {
         this.$router.push(`/product/${this.$store.state.sort}`);
-        this.$store.commit("SELECTED", "請選擇或輸入縣市");
+        this.$store.commit("SELECTED", "");
       }
     },
     updateList() {

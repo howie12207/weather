@@ -323,29 +323,7 @@
               <td v-for="i in 7" :key="i">
                 <span
                   class="uv"
-                  :class="{
-                    uv0:
-                      week.weatherElement[9].time[i - 1].elementValue[0]
-                        .value <= 2,
-                    uv3:
-                      week.weatherElement[9].time[i - 1].elementValue[0].value >
-                        2 &&
-                      week.weatherElement[9].time[i - 1].elementValue[0]
-                        .value <= 5,
-                    uv6:
-                      week.weatherElement[9].time[i - 1].elementValue[0].value >
-                        5 &&
-                      week.weatherElement[9].time[i - 1].elementValue[0]
-                        .value <= 7,
-                    uv8:
-                      week.weatherElement[9].time[i - 1].elementValue[0].value >
-                        7 &&
-                      week.weatherElement[9].time[i - 1].elementValue[0]
-                        .value <= 10,
-                    uv11:
-                      week.weatherElement[9].time[i - 1].elementValue[0].value >
-                      10
-                  }"
+                  :data-level="week.weatherElement[9].time[i - 1].elementValue[0].value | level"
                 >
                   {{
                   week.weatherElement[9].time[i - 1].elementValue[0].value
@@ -403,17 +381,6 @@ export default {
       position: relative;
       color: #303133;
     }
-    // > h2:before {
-    //   content: "";
-    //   position: relative;
-    //   display: inline-block;
-    //   margin: 0 8px 0 0;
-    //   left: 0;
-    //   top: 5px;
-    //   height: 22px;
-    //   width: 4px;
-    //   background-color: #dcdfe6;
-    // }
     > h3 {
       width: 80%;
       margin: 0 auto 16px;
@@ -435,10 +402,8 @@ export default {
           line-height: 32px;
           background-color: #d9ecff;
           border-radius: 3px;
-          // font-weight: 600;
           color: #303133;
         }
-
         thead {
           > tr {
             border-bottom: 1px solid #dcdfe6;
@@ -465,30 +430,6 @@ export default {
             > th {
               position: relative;
             }
-            // > th:after {
-            //   content: "06:00 ~ 18:00";
-            //   position: absolute;
-            //   bottom: -16px;
-            //   z-index: 100;
-            //   visibility: hidden;
-            //   opacity: 0;
-            //   right: -48px;
-            //   width: 80px;
-            //   font-size: 12px;
-            //   line-height: 18px;
-            //   padding: 6px 2px;
-            //   color: white;
-            //   background-color: rgba(0, 0, 0, 0.8);
-            //   border-radius: 4px;
-            //   transition: opacity 1s 0.3s;
-            // }
-            // > .night:first-child:after {
-            //   content: "18:00 ~ 06:00";
-            // }
-            // > th:hover:after {
-            //   visibility: visible;
-            //   opacity: 1;
-            // }
             > td.time {
               > .txt {
                 color: #79bbff;
@@ -530,19 +471,19 @@ export default {
         color: white;
         position: relative;
       }
-      .uv0 {
+      .uv[data-level="低量級"] {
         background-image: url(../assets/uv0.png);
       }
-      .uv3 {
+      .uv[data-level="中量級"] {
         background-image: url(../assets/uv3.png);
       }
-      .uv6 {
+      .uv[data-level="高量級"] {
         background-image: url(../assets/uv6.png);
       }
-      .uv8 {
+      .uv[data-level="過量級"] {
         background-image: url(../assets/uv8.png);
       }
-      .uv11 {
+      .uv[data-level="危險級"] {
         background-image: url(../assets/uv11.png);
       }
     }
@@ -564,7 +505,7 @@ export default {
     > .container {
       > .section {
         .uv:after {
-          content: "";
+          content: attr(data-level);
           position: absolute;
           bottom: -16px;
           z-index: 100;
@@ -579,21 +520,6 @@ export default {
           background-color: rgba(0, 0, 0, 0.8);
           border-radius: 4px;
           transition: opacity 1s 0.3s;
-        }
-        .uv0:after {
-          content: "輕量級";
-        }
-        .uv3:after {
-          content: "中量級";
-        }
-        .uv6:after {
-          content: "高量級";
-        }
-        .uv8:after {
-          content: "過量級";
-        }
-        .uv8:after {
-          content: "危險級";
         }
         .uv:hover:after {
           visibility: visible;

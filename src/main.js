@@ -14,6 +14,7 @@ import Date from "./filters/Date.js";
 import Time2 from "./filters/Time2.js";
 import Time3 from "./filters/Time3.js";
 import Time4 from "./filters/Time4.js";
+import Level from "./filters/Level";
 
 Vue.use(VueAxios, axios);
 Vue.use(ElementUI);
@@ -24,6 +25,7 @@ Vue.filter("date", Date);
 Vue.filter("time2", Time2);
 Vue.filter("time3", Time3);
 Vue.filter("time4", Time4);
+Vue.filter("level", Level);
 
 Vue.config.productionTip = false;
 

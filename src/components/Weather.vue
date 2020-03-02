@@ -18,7 +18,7 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(["getWeathers", "getStar"])
+    ...mapActions(["getWeathers"])
   },
   mounted() {
     this.getWeathers();
