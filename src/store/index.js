@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
 import router from "../router";
+import { getDayWeather, getWeekWeather } from "@/api/api.js";
 
 Vue.use(Vuex);
 
@@ -15,7 +15,7 @@ export default new Vuex.Store({
     location: "",
     selected: "",
     city: "",
-    loading: false
+    loading: false,
   },
   mutations: {
     LOADING(state, status) {
@@ -41,36 +41,26 @@ export default new Vuex.Store({
     },
     CITY(state, payload) {
       state.city = payload;
-    }
+    },
   },
   actions: {
     // 取得兩天天氣資料
     getWeathers(context) {
-      context.commit("LOADING", true);
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_APIDAY}=${process.env.VUE_APP_APICODE}`;
-      axios.get(url).then(res => {
-        context.commit("WEATHERS", res.data.records.location);
+      getDayWeather().then((res) => {
+        context.commit("WEATHERS", res.records.location);
       });
-      setTimeout(() => {
-        context.commit("LOADING", false);
-      }, 500);
     },
     // 取得一周天氣資料
     getWeathersWeek(context, payload) {
-      context.commit("LOADING", true);
-      const url = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_APIWEEK}=${process.env.VUE_APP_APICODE}`;
       let tmp = {};
       context.dispatch("transform", payload);
-      axios.get(url).then(res => {
-        tmp = res.data.records.locations[0].location.filter(item => {
+      getWeekWeather().then((res) => {
+        tmp = res.records.locations[0].location.filter((item) => {
           if (item.locationName === context.state.location) {
             return item;
           }
         });
         context.commit("WEATHERSWEEK", tmp);
-        setTimeout(() => {
-          context.commit("LOADING", false);
-        }, 500);
       });
     },
     // 更換分類
@@ -140,7 +130,7 @@ export default new Vuex.Store({
       span.appendChild(node);
       let element = document.querySelector(".taiwan");
       element.appendChild(span);
-      element.querySelectorAll("span").forEach(item => {
+      element.querySelectorAll("span").forEach((item) => {
         item.style.setProperty("position", "absolute");
         item.style.setProperty("top", `${event.pageY + 20}px`);
         item.style.setProperty("left", `${event.pageX + 20}px`);
@@ -157,10 +147,10 @@ export default new Vuex.Store({
       context.commit("CITY", "");
       let element = document.querySelector(".taiwan");
       let span = element.querySelectorAll("span");
-      span.forEach(item => {
+      span.forEach((item) => {
         element.removeChild(item);
       });
-    }
+    },
   },
   getters: {
     loading(state) {
@@ -173,74 +163,74 @@ export default new Vuex.Store({
       tmp.east = [];
       tmp.south = [];
       tmp.offshore = [];
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "基隆市") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "臺北市") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "新北市") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "桃園市") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "新竹市") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "新竹縣") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "苗栗縣") tmp.north.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "臺中市") tmp.central.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "彰化縣") tmp.central.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "南投縣") tmp.central.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "雲林縣") tmp.central.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "嘉義市") tmp.central.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "嘉義縣") tmp.central.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "宜蘭縣") tmp.east.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "花蓮縣") tmp.east.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "臺東縣") tmp.east.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "臺南市") tmp.south.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "高雄市") tmp.south.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "屏東縣") tmp.south.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "連江縣") tmp.offshore.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "金門縣") tmp.offshore.push(element);
       });
-      state.weathers.forEach(element => {
+      state.weathers.forEach((element) => {
         if (element.locationName === "澎湖縣") tmp.offshore.push(element);
       });
       return tmp;
-    }
+    },
   },
-  modules: {}
+  modules: {},
 });
