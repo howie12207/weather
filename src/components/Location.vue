@@ -354,9 +354,12 @@ export default {
       return this.$store.state.weathersWeek[0];
     }
   },
-  created() {
+  async created() {
     this.$store.commit("SORT", this.$router.history.current.name);
-    this.$store.dispatch("getWeathersWeek", this.$router.history.current.name);
+    await this.$store.dispatch(
+      "getWeathersWeek",
+      this.$router.history.current.name
+    );
     scroll(0, 0);
   }
 };
