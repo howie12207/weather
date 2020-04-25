@@ -45,16 +45,16 @@ export default new Vuex.Store({
   },
   actions: {
     // 取得兩天天氣資料
-    getWeathers(context) {
-      getDayWeather().then((res) => {
+    async getWeathers(context) {
+      await getDayWeather().then((res) => {
         context.commit("WEATHERS", res.records.location);
       });
     },
     // 取得一周天氣資料
-    getWeathersWeek(context, payload) {
+    async getWeathersWeek(context, payload) {
       let tmp = {};
       context.dispatch("transform", payload);
-      getWeekWeather().then((res) => {
+      await getWeekWeather().then((res) => {
         tmp = res.records.locations[0].location.filter((item) => {
           if (item.locationName === context.state.location) {
             return item;

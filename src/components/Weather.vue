@@ -20,8 +20,8 @@ export default {
   methods: {
     ...mapActions(["getWeathers"])
   },
-  mounted() {
-    this.getWeathers();
+  async created() {
+    await this.getWeathers();
   }
 };
 </script>
